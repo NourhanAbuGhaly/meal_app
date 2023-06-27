@@ -15,8 +15,8 @@ class _CategoryMealScreenState extends State<CategoryMealScreen> {
   @override
   Widget build(BuildContext context) {
     final routeArg =
-        ModalRoute.of(context)?.settings.arguments as Map<String, String>;
-    final categoryId = routeArg["id"];
+        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+    final categoryId = routeArg["id"]!;
     final categoryTitle = routeArg["title"];
     //ناخد العناصر التي نحقق الشرط
     final categoryMeals = DUMMY_MEALS.where((meal) {
@@ -29,6 +29,7 @@ class _CategoryMealScreenState extends State<CategoryMealScreen> {
       body: ListView.builder(
         itemBuilder: (ctx, index) {
           return MealItem(
+            id:categoryMeals[index].id,
               ImageUrl: categoryMeals[index].imageUrl,
               title: categoryMeals[index].title,
               duration: categoryMeals[index].duration,
