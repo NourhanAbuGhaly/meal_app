@@ -3,7 +3,6 @@ import 'package:meal_app/2.2%20dummy_data.dart';
 import 'package:meal_app/screen/meal_item.dart';
 
 class CategoryMealScreen extends StatefulWidget {
-  const CategoryMealScreen({super.key});
 
   static const id = "category_meal_screen";
 
@@ -14,7 +13,7 @@ class CategoryMealScreen extends StatefulWidget {
 class _CategoryMealScreenState extends State<CategoryMealScreen> {
   @override
   Widget build(BuildContext context) {
-    final routeArg =
+    final Map<String, String> routeArg =
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     final categoryId = routeArg["id"]!;
     final categoryTitle = routeArg["title"];

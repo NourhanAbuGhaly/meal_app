@@ -9,7 +9,6 @@ class CategoryScreen extends StatelessWidget {
   //to convert the list of object to list to widget we use map
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("meal"),),
       body: GridView(
         padding: EdgeInsets.all(5),
         children: DUMMY_CATEGORIES
