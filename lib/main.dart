@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meal_app/screen/filter_screen.dart';
 import 'package:meal_app/screen/meal_detail_screen.dart';
 import 'package:meal_app/screen/category_meal_screen.dart';
 import 'package:meal_app/screen/tabs_screen.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => TabsScreen(),
         CategoryMealScreen.id: (context) => CategoryMealScreen(),
         MealDetailScreen.id: (context)=>MealDetailScreen(),
-      },
+        FilterScreen.id:(context)=> FilterScreen()},
     );
   }
 }

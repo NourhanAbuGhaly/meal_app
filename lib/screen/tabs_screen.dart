@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/screen/category_screen.dart';
 import 'package:meal_app/screen/favorites_screen.dart';
+import 'package:meal_app/screen/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -12,7 +13,7 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   final List<Map<String,dynamic>> _pages = [
     { 'title': "Category","page": CategoryScreen(),},
-    {'title': "Favorites","page": FavoritesScreen()}
+    {'title': "Favorites","page": FavoritesScreen(),}
 
   ];
   int _selectPageIndex = 0;
@@ -47,6 +48,7 @@ class _TabsScreenState extends State<TabsScreen> {
           ),
         ],
       ),
+      drawer: MainDrawer(),
     );
   }
 }
