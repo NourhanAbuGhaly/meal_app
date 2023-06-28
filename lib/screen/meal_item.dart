@@ -19,8 +19,9 @@ final String id;
   final Affordability affordability;
 
    void selectMeal(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed(MealDetailScreen.id, arguments: id);
+    Navigator.of(ctx).pushNamed(MealDetailScreen.id, arguments: id).then((value) => print(value));
   }
+  // value is the return value from pop
   String get ComplexityText{
     switch(complexity){
       case Complexity.Simple:return "Simple";break;

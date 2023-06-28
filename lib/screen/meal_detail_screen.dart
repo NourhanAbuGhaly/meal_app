@@ -77,7 +77,7 @@ class MealDetailScreen extends StatelessWidget {
                         child: Text("# ${index + 1}"),
                       ),
                     ),
-                  const  Divider()
+                    const Divider()
                   ],
                 );
               },
@@ -85,6 +85,12 @@ class MealDetailScreen extends StatelessWidget {
             )),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.delete),
+        onPressed: () {Navigator.of(context).pop(mealId);
+          // the mealId is the return value to the screen mealItem
+          },
       ),
     );
   }

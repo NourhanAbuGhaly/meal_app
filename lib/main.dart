@@ -17,8 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-          primarySwatch: Colors.pink,
-          accentColor: Colors.amber,
+
           canvasColor: Color.fromRGBO(255, 254, 229, 0.0),
           textTheme: ThemeData.light().textTheme.copyWith(
                 bodyText1: TextStyle(
@@ -28,7 +27,7 @@ class MyApp extends StatelessWidget {
 //             titleLarge: TextStyle(fontSize: 24, fontFamily: "RobotoCondensed")
 // ,            titleMedium: TextStyle(fontSize: 24, fontFamily: "RobotoCondensed")
 //              , titleSmall: TextStyle(fontSize: 24, fontFamily: "RobotoCondensed")
-              )),
+              ), colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.pink).copyWith(secondary: Colors.amber)),
       //home: CategoryScreen(),
       routes: {
         '/': (context) => TabsScreen(),
