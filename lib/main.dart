@@ -24,24 +24,47 @@ class _MyAppState extends State<MyApp> {
     "vegan": false,
     "vegetarian": false
   };
-  void _setFilter(Map <String,bool > _filterData){
-setState(() {
-  _filters=_filterData;
-  _avaloibleMeal =DUMMY_MEALS.where((meal) {
-    if (_filters["gluten"]==true && meal.isGlutenFree){
-return false;
+
+  void _setFilter(Map<String, bool> _filterData) {
+    setState(() {
+      _filters = _filterData;
+      _avaloibleMeal = DUMMY_MEALS.where((meal) {
+        if (_filters["gluten"] == true && meal.isGlutenFree) {
+          return false;
+        }
+        if (_filters["lactose"] == true && meal.isLactoseFree) {
+          return false;
+        }
+        if (_filters["vegan"] == true && meal.isVegan) {
+          return false;
+        }
+        if (_filters["vegetarian"] == true && meal.isVegetarian) {
+          return false;
+        }
+        return true;
+      }).toList();
+    });
+  }
+
+  void _toggleFavourit(String mealId) {
+    final exitindIndex = _FavouritMeal.indexWhere((meal) => meal.id == mealId);
+
+    if (exitindIndex >= 0) {
+      setState(() {
+        _FavouritMeal.removeAt(exitindIndex);
+      });
+    } else {
+      _FavouritMeal.add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
     }
-    if (_filters["lactose"]==true && meal.isLactoseFree){
-      return false;
-    }  if (_filters["vegan"]==true && meal.isVegan){
-      return false;
-    }  if (_filters["vegetarian"]==true && meal.isVegetarian){
-      return false;
-    }return true;
-  }).toList();
-});
- }
- List<Meal > _avaloibleMeal=DUMMY_MEALS;
+  }
+
+  List<Meal> _avaloibleMeal = DUMMY_MEALS;
+  List<Meal> _FavouritMeal = [];
+
+  bool isMealFavorit(String id) {
+    return _FavouritMeal.any((meal) => meal.id == id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -63,10 +86,11 @@ return false;
               .copyWith(secondary: Colors.amber)),
       //home: CategoryScreen(),
       routes: {
-        '/': (context) => TabsScreen(),
+        '/': (context) => TabsScreen(_FavouritMeal),
         CategoryMealScreen.id: (context) => CategoryMealScreen(_avaloibleMeal),
-        MealDetailScreen.id: (context) => MealDetailScreen(),
-        FilterScreen.id: (context) => FilterScreen( _setFilter as Function, _filters)
+        MealDetailScreen.id: (context) => MealDetailScreen(_toggleFavourit,isMealFavorit),
+        FilterScreen.id: (context) =>
+            FilterScreen(_setFilter as Function, _filters)
       },
     );
   }
